@@ -11,7 +11,7 @@
 
 <class>entities.Carrera</class>
 
-
+<class>entities.EstudianteCarrera</class>
 <properties>
 
 <!-- Propiedades de configuracion de JDBC para Derby /-->
@@ -25,7 +25,7 @@
 
 
 <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/example"/>
+<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/Integrador2?createDatabaseIfNotExist=true"/>
 <property name="javax.persistence.jdbc.user" value="root" />
 <property name="javax.persistence.jdbc.password" value=""/>
 

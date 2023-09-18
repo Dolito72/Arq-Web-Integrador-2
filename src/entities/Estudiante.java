@@ -18,8 +18,8 @@ import javax.persistence.OneToMany;
 @Entity
 public class Estudiante {
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
-	private int id;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int id_estudiante;
 	@Column
 	private String nombres;
 	@Column
@@ -34,12 +34,100 @@ public class Estudiante {
 	private String ciudadResidencia;
 	@Column
 	private int numeroLibreta;
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "inscriptos")
-	private ArrayList<Carrera>carreras;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "estudiante")
+	private List<EstudianteCarrera>carreras;
 	
 	public Estudiante() {
-		this.carreras = new ArrayList<Carrera>();
+		this.carreras = new ArrayList<EstudianteCarrera>();
 		
+	}
+
+	public Estudiante(int id_estudiante, String nombres, String apellido, int edad, String genero, int dni,
+			String ciudadResidencia, int numeroLibreta, List<EstudianteCarrera> carreras) {
+		this.id_estudiante = id_estudiante;
+		this.nombres = nombres;
+		this.apellido = apellido;
+		this.edad = edad;
+		this.genero = genero;
+		this.dni = dni;
+		this.ciudadResidencia = ciudadResidencia;
+		this.numeroLibreta = numeroLibreta;
+		this.carreras = carreras;
+	}
+
+	public String getNombres() {
+		return nombres;
+	}
+
+	public void setNombres(String nombres) {
+		this.nombres = nombres;
+	}
+
+	public String getApellido() {
+		return apellido;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+
+	public int getEdad() {
+		return edad;
+	}
+
+	public void setEdad(int edad) {
+		this.edad = edad;
+	}
+
+	public String getGenero() {
+		return genero;
+	}
+
+	public void setGenero(String genero) {
+		this.genero = genero;
+	}
+
+	public int getDni() {
+		return dni;
+	}
+
+	public void setDni(int dni) {
+		this.dni = dni;
+	}
+
+	public String getCiudadResidencia() {
+		return ciudadResidencia;
+	}
+
+	public void setCiudadResidencia(String ciudadResidencia) {
+		this.ciudadResidencia = ciudadResidencia;
+	}
+
+	public int getNumeroLibreta() {
+		return numeroLibreta;
+	}
+
+	public void setNumeroLibreta(int numeroLibreta) {
+		this.numeroLibreta = numeroLibreta;
+	}
+
+	public List<EstudianteCarrera> getCarreras() {
+		return carreras;
+	}
+
+	public void setCarreras(List<EstudianteCarrera> carreras) {
+		this.carreras = carreras;
+	}
+
+	public int getId_estudiante() {
+		return id_estudiante;
+	}
+
+	@Override
+	public String toString() {
+		return "Estudiante [id_estudiante=" + id_estudiante + ", nombres=" + nombres + ", apellido=" + apellido
+				+ ", edad=" + edad + ", genero=" + genero + ", dni=" + dni + ", ciudadResidencia=" + ciudadResidencia
+				+ ", numeroLibreta=" + numeroLibreta + ", carreras=" + carreras + "]";
 	}
 
 	
