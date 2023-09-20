@@ -45,7 +45,15 @@ public class EstudianteRepositoryImpl implements EstudianteRepository {
 		// TODO Auto-generated method stub
 		return null;
 	}
+//poner en interface
+	public Estudiante estudiantePorDni(int dni) {
+		//this.em.getTransaction().begin();
+		
+		Estudiante e = em.find(Estudiante.class, dni);
+		//this.em.getTransaction().commit();
+		//em.close();
+		return e;
+	}
+	
 
-	
-	
 }

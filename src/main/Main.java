@@ -23,18 +23,25 @@ public class Main {
 
 	public static void main(String[] args) throws SQLException, IOException  {
 		EntityManager em = FactoryEntityManager.getInstance();
-		em.getTransaction().begin();
-		CSVParser datosEstudiantes = CSVFormat.DEFAULT.withHeader().parse(new FileReader("./src/csv/estudiantes.csv"));
-	//	CSVParser datosFacturasProductos = CSVFormat.DEFAULT.withHeader().parse(new FileReader("./src/dataset/facturas-productos.csv"));
-	//	CSVParser datosProductos = CSVFormat.DEFAULT.withHeader().parse(new FileReader("./src/dataset/productos.csv"));
+		//em.getTransaction().begin();
+		//CSVParser datosEstudiantes = CSVFormat.DEFAULT.withHeader().parse(new FileReader("./src/csv/estudiantes.csv"));
+		//CSVParser datosCarrera = CSVFormat.DEFAULT.withHeader().parse(new FileReader("./src/csv/carreras.csv"));
+		//CSVParser datosEstudianteCarrera = CSVFormat.DEFAULT.withHeader().parse(new FileReader("./src/csv/estudianteCarrera.csv"));
 	//	CSVParser datosClientes = CSVFormat.DEFAULT.withHeader().parse(new FileReader("./src/dataset/clientes.csv"));
 		
-		Helper helper = new Helper(em);
-		helper.fillTableEstudiante(datosEstudiantes);
-		em.getTransaction().commit();
-		em.close();
+		//Helper helper = new Helper(em);
+		//helper.fillTables(datosEstudiantes, datosCarrera,datosEstudianteCarrera);
+		//helper.fillTableEstudiante(datosEstudiantes);
+		//helper.fillTableCarrera(datosCarrera);
 		
-	
+		//em.getTransaction().commit();
+		//em.close();
+		
+		EstudianteRepositoryImpl eri = new EstudianteRepositoryImpl(em);
+		Estudiante e = new Estudiante (44, "vicky", "lopez", 34, "fem", "tandil", 999999);
+		eri.altaEstudiante(e);
+		System.out.println(e);
+		
 	}
 
 }

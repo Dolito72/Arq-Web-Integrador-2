@@ -18,9 +18,6 @@ import javax.persistence.OneToMany;
 @Entity
 public class Estudiante {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id_estudiante;
-	@Column
 	private int dni;
 	@Column
 	private String nombre;
@@ -38,22 +35,19 @@ public class Estudiante {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "estudiante")
 	private List<EstudianteCarrera>carreras;
 	
-	public Estudiante(String nombre, String apellido, int dni, int edad, String genero, String ciudad, int lU) {
-		this.carreras = new ArrayList<EstudianteCarrera>();
-		
-	}
-
-	public Estudiante(int dni, String nombre, String apellido, int edad, String genero, 
-			String ciudadResidencia, int numeroLibreta) {
-		this.id_estudiante = id_estudiante;
+	public Estudiante(int dni, String nombre, String apellido, int edad, String genero, String ciudad, int Lu) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.edad = edad;
 		this.genero = genero;
 		this.dni = dni;
-		this.ciudadResidencia = ciudadResidencia;
-		this.LU = numeroLibreta;
-		this.carreras = carreras;
+		this.ciudadResidencia = ciudad;
+		this.LU = Lu;
+		this.carreras = new ArrayList<EstudianteCarrera>();
+	}
+
+	public Estudiante() {
+		this.carreras = new ArrayList<EstudianteCarrera>();
 	}
 
 	public String getNombres() {
@@ -92,9 +86,7 @@ public class Estudiante {
 		return dni;
 	}
 
-	public void setDni(int dni) {
-		this.dni = dni;
-	}
+	
 
 	public String getCiudadResidencia() {
 		return ciudadResidencia;
@@ -120,13 +112,10 @@ public class Estudiante {
 		this.carreras = carreras;
 	}
 
-	public int getId_estudiante() {
-		return id_estudiante;
-	}
 
 	@Override
 	public String toString() {
-		return "Estudiante [id_estudiante=" + id_estudiante + ", nombres=" + nombre + ", apellido=" + apellido
+		return "Estudiante [nombres=" + nombre + ", apellido=" + apellido
 				+ ", edad=" + edad + ", genero=" + genero + ", dni=" + dni + ", ciudadResidencia=" + ciudadResidencia
 				+ ", numeroLibreta=" + LU + ", carreras=" + carreras + "]";
 	}

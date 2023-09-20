@@ -31,5 +31,14 @@ public class CarreraRepositoryImpl implements CarreraRepository{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	//hacer en interfaz
+	public Carrera carreraPorId(int id) {
+		//this.em.getTransaction().begin();
+		
+		Carrera c = em.find(Carrera.class, id);
+		//this.em.getTransaction().commit();
+		//em.close();
+		return c;
+	}
 
 }

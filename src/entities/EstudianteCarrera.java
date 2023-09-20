@@ -40,10 +40,9 @@ public class EstudianteCarrera {
 		
 	}
 
-	public EstudianteCarrera(int id_ec, Estudiante estudiante, Carrera carrera, int anioInscripcion, int anioGraduacion,
+	public EstudianteCarrera(Estudiante estudiante, Carrera carrera, int anioInscripcion, int anioGraduacion,
 			int antiguedad) {
-		super();
-		this.id = id_ec;
+		
 		this.estudiante = estudiante;
 		this.carrera = carrera;
 		this.inscripcion = anioInscripcion;

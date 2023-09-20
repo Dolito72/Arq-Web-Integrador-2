@@ -21,25 +21,27 @@ import javax.persistence.OneToMany;
 @Entity
 public class Carrera {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id_carrera;
 	@Column
 	private String nombre;
 	
+	@Column 
+	private int duracion;
+	
 	@OneToMany (mappedBy = "carrera", fetch=FetchType.LAZY)
 	private List<EstudianteCarrera> estudiantes;
 
-		public Carrera () {
+	public Carrera () {
 			this.estudiantes= new ArrayList<EstudianteCarrera>();
 			
 	}
 
-		public Carrera(int id_carrera, String nombre, List<EstudianteCarrera> estudiantes) {
-			super();
+	public Carrera(int id_carrera, String nombre, int duracion) {
 			this.id_carrera = id_carrera;
 			this.nombre = nombre;
-			this.estudiantes = estudiantes;
-		}
+			this.duracion = duracion;
+			this.estudiantes = new ArrayList<EstudianteCarrera>();
+	}
 
 		public String getNombre() {
 			return nombre;
