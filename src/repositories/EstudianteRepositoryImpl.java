@@ -17,7 +17,15 @@ public class EstudianteRepositoryImpl implements EstudianteRepository {
 
 	@Override
 	public void altaEstudiante(Estudiante e) {
-		// TODO Auto-generated method stub
+		this.em.getTransaction().begin();
+		//if(!em.contains(e)) {
+			em.persist(e);
+	//	} else {
+		//	em.merge(e);
+	//	}
+		this.em.getTransaction().commit();
+		em.close();
+	
 	}
 
 	@Override

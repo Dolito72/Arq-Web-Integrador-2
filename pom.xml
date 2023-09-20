@@ -15,7 +15,12 @@
    		<artifactId>hibernate-entitymanager</artifactId>
     	<version>5.6.15.Final</version>
 		</dependency>
-</dependencies>
+	<dependency>
+		<groupId>EJERCICIOINTEGRADOR1</groupId>
+		<artifactId>EJERCICIOINTEGRADOR1</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</dependency>
+  </dependencies>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <plugins>

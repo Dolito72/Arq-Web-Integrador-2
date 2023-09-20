@@ -17,7 +17,7 @@ public class EstudianteCarrera {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id_ec;
+	private int id;
 	
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "fk_estudiante")
@@ -28,10 +28,10 @@ public class EstudianteCarrera {
 	private Carrera carrera;
 	
 	@Column
-	private int anioInscripcion;
+	private int inscripcion;
 	
 	@Column
-	private int anioGraduacion;
+	private int graduacion;
 	
 	@Column
 	private int antiguedad;
@@ -43,11 +43,11 @@ public class EstudianteCarrera {
 	public EstudianteCarrera(int id_ec, Estudiante estudiante, Carrera carrera, int anioInscripcion, int anioGraduacion,
 			int antiguedad) {
 		super();
-		this.id_ec = id_ec;
+		this.id = id_ec;
 		this.estudiante = estudiante;
 		this.carrera = carrera;
-		this.anioInscripcion = anioInscripcion;
-		this.anioGraduacion = anioGraduacion;
+		this.inscripcion = anioInscripcion;
+		this.graduacion = anioGraduacion;
 		this.antiguedad = antiguedad;
 	}
 
@@ -68,19 +68,19 @@ public class EstudianteCarrera {
 	}
 
 	public int getAnioInscripcion() {
-		return anioInscripcion;
+		return inscripcion;
 	}
 
 	public void setAnioInscripcion(int anioInscripcion) {
-		this.anioInscripcion = anioInscripcion;
+		this.inscripcion = anioInscripcion;
 	}
 
 	public int getAnioGraduacion() {
-		return anioGraduacion;
+		return graduacion;
 	}
 
 	public void setAnioGraduacion(int anioGraduacion) {
-		this.anioGraduacion = anioGraduacion;
+		this.graduacion = anioGraduacion;
 	}
 
 	public int getAntiguedad() {
@@ -92,13 +92,13 @@ public class EstudianteCarrera {
 	}
 
 	public int getId_ec() {
-		return id_ec;
+		return id;
 	}
 
 	@Override
 	public String toString() {
-		return "EstudianteCarrera [id_ec=" + id_ec + ", estudiante=" + estudiante + ", carrera=" + carrera
-				+ ", anioInscripcion=" + anioInscripcion + ", anioGraduacion=" + anioGraduacion + ", antiguedad="
+		return "EstudianteCarrera [id_ec=" + id+ ", estudiante=" + estudiante + ", carrera=" + carrera
+				+ ", anioInscripcion=" + inscripcion + ", anioGraduacion=" + graduacion + ", antiguedad="
 				+ antiguedad + "]";
 	}
 }

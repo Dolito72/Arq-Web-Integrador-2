@@ -21,46 +21,47 @@ public class Estudiante {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id_estudiante;
 	@Column
-	private String nombres;
+	private int dni;
+	@Column
+	private String nombre;
 	@Column
 	private String apellido;
 	@Column
 	private int edad;
 	@Column
 	private String genero;
-	@Column
-	private int dni;
-	@Column
+	
+	@Column (name="ciudad")
 	private String ciudadResidencia;
 	@Column
-	private int numeroLibreta;
+	private int LU;
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "estudiante")
 	private List<EstudianteCarrera>carreras;
 	
-	public Estudiante() {
+	public Estudiante(String nombre, String apellido, int dni, int edad, String genero, String ciudad, int lU) {
 		this.carreras = new ArrayList<EstudianteCarrera>();
 		
 	}
 
-	public Estudiante(int id_estudiante, String nombres, String apellido, int edad, String genero, int dni,
-			String ciudadResidencia, int numeroLibreta, List<EstudianteCarrera> carreras) {
+	public Estudiante(int dni, String nombre, String apellido, int edad, String genero, 
+			String ciudadResidencia, int numeroLibreta) {
 		this.id_estudiante = id_estudiante;
-		this.nombres = nombres;
+		this.nombre = nombre;
 		this.apellido = apellido;
 		this.edad = edad;
 		this.genero = genero;
 		this.dni = dni;
 		this.ciudadResidencia = ciudadResidencia;
-		this.numeroLibreta = numeroLibreta;
+		this.LU = numeroLibreta;
 		this.carreras = carreras;
 	}
 
 	public String getNombres() {
-		return nombres;
+		return nombre;
 	}
 
 	public void setNombres(String nombres) {
-		this.nombres = nombres;
+		this.nombre = nombres;
 	}
 
 	public String getApellido() {
@@ -104,11 +105,11 @@ public class Estudiante {
 	}
 
 	public int getNumeroLibreta() {
-		return numeroLibreta;
+		return LU;
 	}
 
 	public void setNumeroLibreta(int numeroLibreta) {
-		this.numeroLibreta = numeroLibreta;
+		this.LU = numeroLibreta;
 	}
 
 	public List<EstudianteCarrera> getCarreras() {
@@ -125,9 +126,9 @@ public class Estudiante {
 
 	@Override
 	public String toString() {
-		return "Estudiante [id_estudiante=" + id_estudiante + ", nombres=" + nombres + ", apellido=" + apellido
+		return "Estudiante [id_estudiante=" + id_estudiante + ", nombres=" + nombre + ", apellido=" + apellido
 				+ ", edad=" + edad + ", genero=" + genero + ", dni=" + dni + ", ciudadResidencia=" + ciudadResidencia
-				+ ", numeroLibreta=" + numeroLibreta + ", carreras=" + carreras + "]";
+				+ ", numeroLibreta=" + LU + ", carreras=" + carreras + "]";
 	}
 
 	
