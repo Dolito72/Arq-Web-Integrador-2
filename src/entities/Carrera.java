@@ -1,5 +1,6 @@
 package entities;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -16,11 +17,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 
-
-
 @Entity
-public class Carrera {
+public class Carrera implements Serializable{
+	
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id_carrera;
 	@Column
 	private String nombre;
@@ -32,12 +33,11 @@ public class Carrera {
 	private List<EstudianteCarrera> estudiantes;
 
 	public Carrera () {
-			this.estudiantes= new ArrayList<EstudianteCarrera>();
+		this.estudiantes= new ArrayList<EstudianteCarrera>();
 			
 	}
 
-	public Carrera(int id_carrera, String nombre, int duracion) {
-			this.id_carrera = id_carrera;
+	public Carrera(String nombre, int duracion) {
 			this.nombre = nombre;
 			this.duracion = duracion;
 			this.estudiantes = new ArrayList<EstudianteCarrera>();

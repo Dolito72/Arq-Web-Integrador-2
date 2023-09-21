@@ -1,6 +1,7 @@
 package entities;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,8 +17,12 @@ import javax.persistence.OneToMany;
 
 
 @Entity
-public class Estudiante {
+public class Estudiante implements Serializable{
+	
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int id_estudiante;
+	@Column
 	private int dni;
 	@Column
 	private String nombre;

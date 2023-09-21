@@ -14,11 +14,6 @@ public class CarreraRepositoryImpl implements CarreraRepository{
 		this.em = em;
 	}
 
-	@Override
-	public void matricularEstudiante(Estudiante e) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public List<Carrera> cantidadInscriptosCarrera() {
@@ -39,6 +34,16 @@ public class CarreraRepositoryImpl implements CarreraRepository{
 		//this.em.getTransaction().commit();
 		//em.close();
 		return c;
+	}
+
+
+	@Override
+	public void insertarCarrera(Carrera c) {
+		this.em.getTransaction().begin();
+		em.persist(c);
+		this.em.getTransaction().commit();
+		em.close();
+	
 	}
 
 }

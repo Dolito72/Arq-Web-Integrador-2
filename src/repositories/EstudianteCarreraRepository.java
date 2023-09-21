@@ -1,7 +1,11 @@
 package repositories;
 
+
+import entities.EstudianteCarrera;
+
 public interface EstudianteCarreraRepository {
 	
-	void altaEstudianteCarrera();
-
+	
+	void matricularEstudiante(EstudianteCarrera ec);
+		
 }

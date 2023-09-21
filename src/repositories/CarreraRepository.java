@@ -7,7 +7,7 @@ import entities.Carrera;
 import entities.Estudiante;
 
 public interface CarreraRepository {
-	//void matricularEstudiante(Estudiante e);
+	void insertarCarrera(Carrera c);
 	List<Carrera>  cantidadInscriptosCarrera();
 	List<Estudiante> estudiantesPorCarrera(Carrera carrera, String ciudad);
 
