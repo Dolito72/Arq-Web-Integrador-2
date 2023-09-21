@@ -10,5 +10,6 @@ public interface CarreraRepository {
 	//void matricularEstudiante(Estudiante e);
 	List<Carrera>  cantidadInscriptosCarrera();
 	List<Estudiante> estudiantesPorCarrera(Carrera carrera, String ciudad);
+	void matricularEstudiante(Estudiante e);
 
 }
