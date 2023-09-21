@@ -3,7 +3,7 @@
 <persistence xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.1">
 
 
-<persistence-unit name= "Integrador-2">
+<persistence-unit name= "Integrador2">
 
 <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
@@ -12,6 +12,7 @@
 <class>entities.Carrera</class>
 
 <class>entities.EstudianteCarrera</class>
+
 <properties>
 
 <!-- Propiedades de configuracion de JDBC para Derby /-->

@@ -1,23 +1,29 @@
 package entities;
 
-import javax.annotation.processing.Generated;
+
+
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import java.io.Serializable;
+import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.Objects;
+
 
 @Entity
 @Table(name ="estudiante_carrera")
-public class EstudianteCarrera {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+public class EstudianteCarrera implements Serializable{
+	@EmbeddedId
+	private CarreraEstudiantePk idEstudianteCarrera;
 	
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "fk_estudiante")
@@ -28,28 +34,25 @@ public class EstudianteCarrera {
 	private Carrera carrera;
 	
 	@Column
-	private int inscripcion;
+	private Timestamp fecha_inscripcion;
 	
 	@Column
-	private int graduacion;
+	private Timestamp fecha_egreso;
 	
-	@Column
+	@Column  //actual - inscripcion
 	private int antiguedad;
 
 	public EstudianteCarrera() {
 		
 	}
 
-	public EstudianteCarrera(Estudiante estudiante, Carrera carrera, int anioInscripcion, int anioGraduacion,
-			int antiguedad) {
+	public EstudianteCarrera(Timestamp anio_inscripcion, Timestamp anio_egreso, int antiguedad) {
 		
-		this.estudiante = estudiante;
-		this.carrera = carrera;
-		this.inscripcion = anioInscripcion;
-		this.graduacion = anioGraduacion;
+		this.fecha_inscripcion = anio_inscripcion;
+		this.fecha_egreso = anio_egreso;
 		this.antiguedad = antiguedad;
 	}
-
+/*
 	public Estudiante getEstudiante() {
 		return estudiante;
 	}
@@ -66,38 +69,41 @@ public class EstudianteCarrera {
 		this.carrera = carrera;
 	}
 
-	public int getAnioInscripcion() {
-		return inscripcion;
+	public CarreraEstudiantePk getCarreraEstudiantePk() {
+		return idEstudianteCarrera;
+	}*/
+
+	public Timestamp getAnio_inscripcion() {
+		return this.fecha_inscripcion;
 	}
 
-	public void setAnioInscripcion(int anioInscripcion) {
-		this.inscripcion = anioInscripcion;
+	public Timestamp getAnio_egreso() {
+		return this.fecha_egreso;
 	}
 
-	public int getAnioGraduacion() {
-		return graduacion;
+	public void setAnio_inscripcion(Timestamp anio_inscripcion) {
+		this.fecha_inscripcion = anio_inscripcion;
 	}
 
-	public void setAnioGraduacion(int anioGraduacion) {
-		this.graduacion = anioGraduacion;
+	public void setAnio_egreso(Timestamp anio_egreso) {
+		this.fecha_egreso = anio_egreso;
 	}
 
-	public int getAntiguedad() {
-		return antiguedad;
+	public Integer getAntiguedad() {
+		Calendar fechaInscripcion = Calendar.getInstance();
+		fechaInscripcion.setTimeInMillis(this.fecha_inscripcion.getTime());
+		return Calendar.getInstance().get(Calendar.YEAR) - fechaInscripcion.get(Calendar.YEAR);
 	}
 
 	public void setAntiguedad(int antiguedad) {
 		this.antiguedad = antiguedad;
 	}
 
-	public int getId_ec() {
-		return id;
-	}
+	
 
 	@Override
 	public String toString() {
-		return "EstudianteCarrera [id_ec=" + id+ ", estudiante=" + estudiante + ", carrera=" + carrera
-				+ ", anioInscripcion=" + inscripcion + ", anioGraduacion=" + graduacion + ", antiguedad="
+		return "EstudianteCarrera [año inscripcion=" + fecha_inscripcion + ", año egreso=" + fecha_egreso + ", antiguedad="
 				+ antiguedad + "]";
 	}
 }

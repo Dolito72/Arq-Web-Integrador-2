@@ -38,8 +38,8 @@ public class Helper {
 	public void fillTables(CSVParser datosEstudiantes, CSVParser datosCarrera, CSVParser datosEstudianteCarrera) throws SQLException {
 		em.getTransaction().begin();
 		this.fillTableEstudiante(datosEstudiantes);
-		this.fillTableCarrera(datosCarrera);
-		this.fillTableEstudianteCarrera(datosEstudianteCarrera);
+	//	this.fillTableCarrera(datosCarrera);
+	//	this.fillTableEstudianteCarrera(datosEstudianteCarrera);
 	//	this.fillTableFacturaProducto(datosFactProd);
 		em.getTransaction().commit();
 		em.close();
@@ -64,7 +64,7 @@ public class Helper {
 			}
 		}
 		
-
+/*
 		public void fillTableCarrera(CSVParser datosCarrera) throws SQLException {
 			for (CSVRecord row : datosCarrera) {
 				int id_carrera = Integer.parseInt(row.get("id_carrera"));
@@ -98,7 +98,7 @@ public class Helper {
 				em.persist(estCarrera);
 				
 			}
-		}
+		}*/
 
 }
 

@@ -17,12 +17,13 @@ public class EstudianteRepositoryImpl implements EstudianteRepository {
 
 	@Override
 	public void altaEstudiante(Estudiante e) {
+		//ver chequeos de si ya existe
 		this.em.getTransaction().begin();
 		//if(!em.contains(e)) {
 			em.persist(e);
-	//	} else {
-		//	em.merge(e);
-	//	}
+		//} else {
+			//em.merge(e);
+		//}
 		this.em.getTransaction().commit();
 		em.close();
 	
