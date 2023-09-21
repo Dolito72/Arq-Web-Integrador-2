@@ -15,7 +15,7 @@ import java.sql.Timestamp;
 import factory.FactoryEntityManager;
 import entities.Estudiante;
 import entities.Carrera;
-import entities.CarreraEstudiantePk;
+import entities.CarreraEstudianteId;
 import entities.EstudianteCarrera;
 import repositories.CarreraRepositoryImpl;
 import repositories.EstudianteCarreraRepositoryImpl;
@@ -54,15 +54,23 @@ public class Main {
 		Timestamp inscrip = new Timestamp(System.currentTimeMillis());
 		Timestamp grad = Timestamp.valueOf("2026-09-23 10:10:10.0");
 		
-		//CarreraEstudiantePk idComp = new CarreraEstudiantePk();
+		
+		// Crear una instancia de EstudianteCarreraId
+		CarreraEstudianteId idComp = new CarreraEstudianteId(e, c);
+		idComp.setEstudiante(e);
+		idComp.setCarrera(c);
+
+		// Crear una instancia de EstudianteCarrera y establecer el id compuesto
+		EstudianteCarrera estudianteCarrera = new EstudianteCarrera();
+		estudianteCarrera.setIdEstudianteCarrera(idComp);
+		estudianteCarrera.setAnio_egreso(grad);
+		estudianteCarrera.setFecha_inscripcion(inscrip);
 		
 		
-		//EstudianteCarrera estCarr = new EstudianteCarrera(idComp, e, c, inscrip, grad, 0);
+		repoEstCarrera.matricularEstudiante(estudianteCarrera);
 		
-		//repoEstCarrera.matricularEstudiante(estCarr);
-		
-		
-		//System.out.println(estCarr);
+		System.out.println(estudianteCarrera.getIdEstudianteCarrera()); 
+		em.close();
 		
 	}
 

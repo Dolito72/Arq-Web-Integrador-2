@@ -13,7 +13,7 @@ public class FactoryEntityManager {
 	}
 
 	public static EntityManager getInstance() {
-		if ((em == null) || (!em.isOpen())){
+		if ((em == null)){
 			//EntityManagerFactory emf = Persistence.createEntityManagerFactory("Integrador2");
 			em = emf.createEntityManager();
 		}

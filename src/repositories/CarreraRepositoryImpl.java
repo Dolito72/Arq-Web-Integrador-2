@@ -42,8 +42,15 @@ public class CarreraRepositoryImpl implements CarreraRepository{
 		this.em.getTransaction().begin();
 		em.persist(c);
 		this.em.getTransaction().commit();
-		em.close();
+		//em.close();
 	
+	}
+
+
+	@Override
+	public void matricularEstudiante(Estudiante e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

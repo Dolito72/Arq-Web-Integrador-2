@@ -25,7 +25,7 @@ public class EstudianteRepositoryImpl implements EstudianteRepository {
 			//em.merge(e);
 		//}
 		this.em.getTransaction().commit();
-		em.close();
+	//	em.close();
 	
 	}
 

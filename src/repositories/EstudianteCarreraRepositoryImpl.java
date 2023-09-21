@@ -21,7 +21,7 @@ public class EstudianteCarreraRepositoryImpl implements EstudianteCarreraReposit
 		this.em.getTransaction().begin();
 		em.persist(ec);
 		this.em.getTransaction().commit();
-		em.close();
+		//em.close();
 		
 	}
 	

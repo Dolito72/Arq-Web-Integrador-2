@@ -21,17 +21,17 @@ import java.util.Objects;
 
 @Entity
 @Table(name ="estudiante_carrera")
-public class EstudianteCarrera implements Serializable{
-	@EmbeddedId
-	private CarreraEstudiantePk idEstudianteCarrera;
+public class EstudianteCarrera{
+	@EmbeddedId 
+	private CarreraEstudianteId idEstudianteCarrera;
 	
-	@ManyToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name = "fk_estudiante")
-	private Estudiante estudiante;
+//	@ManyToOne
+//	@JoinColumn(name = "fk_estudiante")
+//	private Estudiante estudiante;
 	
-	@ManyToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name = "fk_carrera")
-	private Carrera carrera;
+//	@ManyToOne
+//	@JoinColumn(name = "fk_carrera")
+//	private Carrera carrera;
 	
 	@Column
 	private Timestamp fecha_inscripcion;
@@ -46,13 +46,21 @@ public class EstudianteCarrera implements Serializable{
 		
 	}
 
-	public EstudianteCarrera(Timestamp anio_inscripcion, Timestamp anio_egreso, int antiguedad) {
-		
+	public EstudianteCarrera(CarreraEstudianteId carEstId, Timestamp anio_inscripcion, Timestamp anio_egreso, int antiguedad) {
+		this.idEstudianteCarrera = carEstId;
 		this.fecha_inscripcion = anio_inscripcion;
 		this.fecha_egreso = anio_egreso;
 		this.antiguedad = antiguedad;
 	}
-/*
+
+	
+	
+	
+	
+	/*
+ 
+ 
+ 
 	public Estudiante getEstudiante() {
 		return estudiante;
 	}
@@ -101,9 +109,25 @@ public class EstudianteCarrera implements Serializable{
 
 	
 
+	public CarreraEstudianteId getIdEstudianteCarrera() {
+		return idEstudianteCarrera;
+	}
+
 	@Override
 	public String toString() {
-		return "EstudianteCarrera [año inscripcion=" + fecha_inscripcion + ", año egreso=" + fecha_egreso + ", antiguedad="
-				+ antiguedad + "]";
+		return "EstudianteCarrera [idEstudianteCarrera=" + idEstudianteCarrera + ", fecha_inscripcion=" + fecha_inscripcion + ", fecha_egreso=" + fecha_egreso
+				+ ", antiguedad=" + antiguedad + "]";
 	}
+
+	public void setIdEstudianteCarrera(CarreraEstudianteId idComp) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setFecha_inscripcion(Timestamp inscrip) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 }

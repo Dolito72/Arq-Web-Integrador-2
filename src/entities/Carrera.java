@@ -18,10 +18,9 @@ import javax.persistence.OneToMany;
 
 
 @Entity
-public class Carrera implements Serializable{
-	
+public class Carrera{
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id_carrera;
 	@Column
 	private String nombre;
@@ -29,20 +28,22 @@ public class Carrera implements Serializable{
 	@Column 
 	private int duracion;
 	
-	@OneToMany (mappedBy = "carrera", fetch=FetchType.LAZY)
-	private List<EstudianteCarrera> estudiantes;
+	@OneToMany (targetEntity = CarreraEstudianteId.class,mappedBy = "carrera", fetch=FetchType.LAZY)
+	private List<CarreraEstudianteId> estudiantes;
 
 	public Carrera () {
-		this.estudiantes= new ArrayList<EstudianteCarrera>();
+		this.estudiantes= new ArrayList<CarreraEstudianteId>();
 			
 	}
 
 	public Carrera(String nombre, int duracion) {
 			this.nombre = nombre;
 			this.duracion = duracion;
-			this.estudiantes = new ArrayList<EstudianteCarrera>();
+			this.estudiantes = new ArrayList<CarreraEstudianteId>();
 	}
 
+	
+	
 		public String getNombre() {
 			return nombre;
 		}
@@ -51,21 +52,21 @@ public class Carrera implements Serializable{
 			this.nombre = nombre;
 		}
 
-		public List<EstudianteCarrera> getEstudiantes() {
+/**		public List<EstudianteCarrera> getEstudiantes() {
 			return estudiantes;
 		}
 
 		public void setEstudiantes(List<EstudianteCarrera> estudiantes) {
 			this.estudiantes = estudiantes;
 		}
-
+**/
 		public int getId_carrera() {
 			return id_carrera;
 		}
 
 		@Override
 		public String toString() {
-			return "Carrera [id_carrera=" + id_carrera + ", nombre=" + nombre + ", estudiantes=" + estudiantes + "]";
+			return "Carrera [id_carrera=" + id_carrera + ", nombre=" + nombre +  "]";
 		}
 	
 	

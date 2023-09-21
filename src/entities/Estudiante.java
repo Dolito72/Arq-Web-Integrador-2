@@ -17,10 +17,10 @@ import javax.persistence.OneToMany;
 
 
 @Entity
-public class Estudiante implements Serializable{
+public class Estudiante {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id_estudiante;
 	@Column
 	private int dni;
@@ -37,8 +37,8 @@ public class Estudiante implements Serializable{
 	private String ciudadResidencia;
 	@Column
 	private int LU;
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "estudiante")
-	private List<EstudianteCarrera>carreras;
+	@OneToMany(targetEntity = CarreraEstudianteId.class,fetch = FetchType.LAZY, mappedBy = "estudiante")
+	private List<CarreraEstudianteId>carreras;
 	
 	public Estudiante(int dni, String nombre, String apellido, int edad, String genero, String ciudad, int Lu) {
 		this.nombre = nombre;
@@ -48,12 +48,12 @@ public class Estudiante implements Serializable{
 		this.dni = dni;
 		this.ciudadResidencia = ciudad;
 		this.LU = Lu;
-		this.carreras = new ArrayList<EstudianteCarrera>();
+		//this.carreras = new ArrayList<EstudianteCarrera>();
 	}
 
-	public Estudiante() {
-		this.carreras = new ArrayList<EstudianteCarrera>();
-	}
+//	public Estudiante() {
+	//	this.carreras = new ArrayList<EstudianteCarrera>();
+//	}
 
 	public String getNombres() {
 		return nombre;
@@ -93,6 +93,10 @@ public class Estudiante implements Serializable{
 
 	
 
+	public int getId_estudiante() {
+		return id_estudiante;
+	}
+
 	public String getCiudadResidencia() {
 		return ciudadResidencia;
 	}
@@ -109,20 +113,19 @@ public class Estudiante implements Serializable{
 		this.LU = numeroLibreta;
 	}
 
-	public List<EstudianteCarrera> getCarreras() {
+/**	public List<EstudianteCarrera> getCarreras() {
 		return carreras;
 	}
 
 	public void setCarreras(List<EstudianteCarrera> carreras) {
 		this.carreras = carreras;
 	}
-
-
-	@Override
+**/
+@Override
 	public String toString() {
 		return "Estudiante [nombres=" + nombre + ", apellido=" + apellido
 				+ ", edad=" + edad + ", genero=" + genero + ", dni=" + dni + ", ciudadResidencia=" + ciudadResidencia
-				+ ", numeroLibreta=" + LU + ", carreras=" + carreras + "]";
+				+ ", numeroLibreta=" + LU + ", carreras="  + "]";
 	}
 
 	
