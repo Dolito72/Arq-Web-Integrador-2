@@ -30,7 +30,7 @@ public class EstudianteCarreraRepositoryImpl implements EstudianteCarreraReposit
 	public List<Carrera> carrerasConInscriptosPorCantInsc() {
 		//this.em.getTransaction().begin();
 		@SuppressWarnings("unchecked")
-		List<Carrera> carrerasConInscriptosPorCantInsc = em.createQuery("SELECT ec FROM EstudianteCarrera ec  ORDER BY COUNT(ec.estudiante) DESC").getResultList(); 
+		List<Carrera> carrerasConInscriptosPorCantInsc = em.createQuery("SELECT c FROM Carrera c JOIN FETCH c.estudiantes e GROUP BY c ORDER BY COUNT(e) DESC").getResultList(); 
 		//em.close();
 		return carrerasConInscriptosPorCantInsc;
 			}
