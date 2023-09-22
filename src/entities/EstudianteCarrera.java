@@ -9,6 +9,7 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -22,16 +23,19 @@ import java.util.Objects;
 @Entity
 @Table(name ="estudiante_carrera")
 public class EstudianteCarrera{
+	
 	@EmbeddedId 
-	private CarreraEstudianteId idEstudianteCarrera;
+	private CarreraEstudianteId idEstudianteCarrera = new CarreraEstudianteId();
 	
-//	@ManyToOne
-//	@JoinColumn(name = "fk_estudiante")
-//	private Estudiante estudiante;
-	
-//	@ManyToOne
-//	@JoinColumn(name = "fk_carrera")
-//	private Carrera carrera;
+	@ManyToOne
+	@MapsId("estudiante_id")
+	@JoinColumn(name = "estudiante_id")
+	private Estudiante estudiante;
+
+	@ManyToOne
+	@MapsId("carrera_id")
+	@JoinColumn(name = "carrera_id")
+	private Carrera carrera;
 	
 	@Column
 	private Timestamp fecha_inscripcion;
@@ -46,20 +50,15 @@ public class EstudianteCarrera{
 		
 	}
 
-	public EstudianteCarrera(CarreraEstudianteId carEstId, Timestamp anio_inscripcion, Timestamp anio_egreso, int antiguedad) {
-		this.idEstudianteCarrera = carEstId;
+	public EstudianteCarrera(Estudiante e, Carrera c, Timestamp anio_inscripcion, Timestamp anio_egreso, int antiguedad) {
+		//this.idEstudianteCarrera = carEstId;
+		this.estudiante = e;
+		this.carrera = c;
 		this.fecha_inscripcion = anio_inscripcion;
 		this.fecha_egreso = anio_egreso;
 		this.antiguedad = antiguedad;
 	}
 
-	
-	
-	
-	
-	/*
- 
- 
  
 	public Estudiante getEstudiante() {
 		return estudiante;
@@ -77,9 +76,7 @@ public class EstudianteCarrera{
 		this.carrera = carrera;
 	}
 
-	public CarreraEstudiantePk getCarreraEstudiantePk() {
-		return idEstudianteCarrera;
-	}*/
+	
 
 	public Timestamp getAnio_inscripcion() {
 		return this.fecha_inscripcion;

@@ -14,11 +14,12 @@ import java.sql.Timestamp;
 
 import factory.FactoryEntityManager;
 import entities.Estudiante;
-import entities.Carrera;
-import entities.CarreraEstudianteId;
 import entities.EstudianteCarrera;
+import entities.Carrera;
+
 import repositories.CarreraRepositoryImpl;
 import repositories.EstudianteCarreraRepositoryImpl;
+//import repositories.EstudianteCarreraRepositoryImpl;
 import repositories.EstudianteRepositoryImpl;
 import java.io.FileReader;
 import utils.Helper;
@@ -43,12 +44,12 @@ public class Main {
 		
 		EstudianteRepositoryImpl eri = new EstudianteRepositoryImpl(em);
 		Estudiante e = new Estudiante (44, "dolo", "parral", 34, "fem", "tandil", 999999);
-		//eri.altaEstudiante(e);
+		eri.altaEstudiante(e);
 		
 		Carrera c = new Carrera("Tudai", 2);
 		
 		CarreraRepositoryImpl repoCarrera = new CarreraRepositoryImpl(em);
-		//repoCarrera.insertarCarrera(c);
+		repoCarrera.insertarCarrera(c);
 		
 		EstudianteCarreraRepositoryImpl repoEstCarrera = new EstudianteCarreraRepositoryImpl(em);
 		Timestamp inscrip = new Timestamp(System.currentTimeMillis());
@@ -56,20 +57,20 @@ public class Main {
 		
 		
 		// Crear una instancia de EstudianteCarreraId
-		CarreraEstudianteId idComp = new CarreraEstudianteId(e, c);
-		idComp.setEstudiante(e);
-		idComp.setCarrera(c);
+		//CarreraEstudianteId idComp = new CarreraEstudianteId(e, c);
+		//idComp.setEstudiante(e);
+		//idComp.setCarrera(c);
 
 		// Crear una instancia de EstudianteCarrera y establecer el id compuesto
-		EstudianteCarrera estudianteCarrera = new EstudianteCarrera();
-		estudianteCarrera.setIdEstudianteCarrera(idComp);
-		estudianteCarrera.setAnio_egreso(grad);
-		estudianteCarrera.setFecha_inscripcion(inscrip);
+		EstudianteCarrera estudianteCarrera = new EstudianteCarrera(e, c, inscrip, grad, 0);
+		//estudianteCarrera.setIdEstudianteCarrera(idComp);
+		//estudianteCarrera.setAnio_egreso(grad);
+		//estudianteCarrera.setFecha_inscripcion(inscrip);
 		
 		
 		repoEstCarrera.matricularEstudiante(estudianteCarrera);
 		
-		System.out.println(estudianteCarrera.getIdEstudianteCarrera()); 
+		//System.out.println(estudianteCarrera.getIdEstudianteCarrera()); 
 		em.close();
 		
 	}

@@ -12,27 +12,22 @@ import org.hibernate.engine.internal.Cascade;
 
 @Embeddable
 public class CarreraEstudianteId implements Serializable{
-	 @ManyToOne (targetEntity = Estudiante.class, cascade  = CascadeType.ALL) 
-	 @JoinColumn(name = "id_estudiante", nullable = false)
-	 private Estudiante estudiante;
+	
 
-	   @ManyToOne  (targetEntity = Carrera.class,cascade = CascadeType.ALL)
-	   @JoinColumn(name = "id_carrera", nullable = false)
-	   private Carrera carrera;
-	    
-	   public CarreraEstudianteId() {
-	   }
-	   
-	   
-	   
+	 @Column
+	 private int estudiante_id;
 
-	   @Override
+   @Column
+   private int carrera_id;
+    
+   public CarreraEstudianteId() {
+   }
+
+   @Override
 	public int hashCode() {
 		// TODO Auto-generated method stub
 		return super.hashCode();
 	}
-
-
 
 
 	@Override
@@ -42,44 +37,32 @@ public class CarreraEstudianteId implements Serializable{
 	}
 
 
-
-
-	public Estudiante getEstudiante() {
-		return estudiante;
+	public int getEstudiante_id() {
+		return estudiante_id;
 	}
 
-
-
-
-	public void setEstudiante(Estudiante estudiante) {
-		this.estudiante = estudiante;
+	public int getCarrera_id() {
+		return carrera_id;
 	}
 
-
-
-
-	public Carrera getCarrera() {
-		return carrera;
+	public void setEstudiante_id(int estudiante_id) {
+		this.estudiante_id = estudiante_id;
 	}
 
-
-
-
-	public void setCarrera(Carrera carrera) {
-		this.carrera = carrera;
+	public void setCarrera_id(int carrera_id) {
+		this.carrera_id = carrera_id;
 	}
 
-
-
-
-	public CarreraEstudianteId(Estudiante estudiante,Carrera carrera) {
-	    	this.estudiante=estudiante;
-	        this.carrera=carrera;
-	    }
 	   
+	public CarreraEstudianteId(int estudiante_id, int carrera_id) {
+		super();
+		this.estudiante_id = estudiante_id;
+		this.carrera_id = carrera_id;
+	}
+
 	@Override
 	public String toString() {
-		return "CarreraEstudianteId [estudiante=" + estudiante + ", carrera=" + carrera + "]";
+		return "CarreraEstudianteId [estudiante=" + estudiante_id + ", carrera=" + carrera_id + "]";
 	}
 	    
 	   

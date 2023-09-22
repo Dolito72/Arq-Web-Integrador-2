@@ -4,6 +4,7 @@ package entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -35,10 +36,12 @@ public class Estudiante {
 	
 	@Column (name="ciudad")
 	private String ciudadResidencia;
+	
 	@Column
 	private int LU;
-	@OneToMany(targetEntity = CarreraEstudianteId.class,fetch = FetchType.LAZY, mappedBy = "estudiante")
-	private List<CarreraEstudianteId>carreras;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "estudiante")
+	private Set<EstudianteCarrera>carreras;
 	
 	public Estudiante(int dni, String nombre, String apellido, int edad, String genero, String ciudad, int Lu) {
 		this.nombre = nombre;

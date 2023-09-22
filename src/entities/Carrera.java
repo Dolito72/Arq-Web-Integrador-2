@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,18 +29,18 @@ public class Carrera{
 	@Column 
 	private int duracion;
 	
-	@OneToMany (targetEntity = CarreraEstudianteId.class,mappedBy = "carrera", fetch=FetchType.LAZY)
-	private List<CarreraEstudianteId> estudiantes;
+	@OneToMany (fetch=FetchType.LAZY, mappedBy = "carrera")
+	private Set<EstudianteCarrera> estudiantes;
 
 	public Carrera () {
-		this.estudiantes= new ArrayList<CarreraEstudianteId>();
+		//this.estudiantes = null;
 			
 	}
 
 	public Carrera(String nombre, int duracion) {
 			this.nombre = nombre;
 			this.duracion = duracion;
-			this.estudiantes = new ArrayList<CarreraEstudianteId>();
+		//	this.estudiantes = new ArrayList<CarreraEstudianteId>();
 	}
 
 	
