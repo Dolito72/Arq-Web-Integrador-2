@@ -12,6 +12,11 @@ import entities.Estudiante;
 
 public class EstudianteRepositoryImpl implements EstudianteRepository {
 	private EntityManager em;
+	
+	
+	public EstudianteRepositoryImpl() {
+		
+	}
 		
 	public EstudianteRepositoryImpl(EntityManager em) {
 		this.em = em;
@@ -33,16 +38,16 @@ public class EstudianteRepositoryImpl implements EstudianteRepository {
 
 	@Override
 	public List<Estudiante> listaEstudiantePorApellido() {
-		this.em.getTransaction().begin();
+		//this.em.getTransaction().begin();
 		@SuppressWarnings("unchecked")
 		List<Estudiante> estudiantesPorApellido = em.createQuery("SELECT e FROM Estudiante e ORDER BY apellido ASC").getResultList(); 
-		
+		//em.close();
 		return estudiantesPorApellido;
 	}
 
 	@Override
 	public Estudiante estudiantePorLibreta(int numeroLibreta) {
-		this.em.getTransaction().begin();
+		//this.em.getTransaction().begin();
 		@SuppressWarnings("unchecked")
 		
 		String jpql = "SELECT e FROM Estudiante e WHERE e.LU = ?1";
@@ -50,17 +55,15 @@ public class EstudianteRepositoryImpl implements EstudianteRepository {
 		query.setParameter(1, numeroLibreta);
 		
 		//CHEQUEAR XQ ME TRAIGO UNA LISTA Y SOLO NECESITO UNO
-		List<Estudiante> resultados = query.getResultList();
-		
-		
-		Estudiante estudiantePorLibreta = resultados.get(0);
-		em.close();
+		//List<Estudiante> resultados = query.getResultList();
+		Estudiante estudiantePorLibreta = (Estudiante) query.getSingleResult(); 
+		//Estudiante estudiantePorLibreta = resultados.get(0);
+		//em.close();
 		return estudiantePorLibreta;
 	}
 
 	@Override
 	public List<Estudiante> listaEstudiantePorGenero(String genero) {
-		
 		this.em.getTransaction().begin();
 		@SuppressWarnings("unchecked")
 		

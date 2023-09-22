@@ -8,6 +8,7 @@ import entities.EstudianteCarrera;
 public class DtoEstudiante {
 	private String apellido;
 	private String nombre;
+	
 	private List<EstudianteCarrera> carreras;
 	
 	public DtoEstudiante(String apellido, String nombre, List<EstudianteCarrera> carreras) {
