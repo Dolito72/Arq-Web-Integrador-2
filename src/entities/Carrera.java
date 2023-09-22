@@ -30,7 +30,7 @@ public class Carrera{
 	private int duracion;
 	
 	@OneToMany (fetch=FetchType.LAZY, mappedBy = "carrera")
-	private Set<EstudianteCarrera> estudiantes;
+	private List<EstudianteCarrera> estudiantes;
 
 	public Carrera () {
 		//this.estudiantes = null;
@@ -40,7 +40,7 @@ public class Carrera{
 	public Carrera(String nombre, int duracion) {
 			this.nombre = nombre;
 			this.duracion = duracion;
-		//	this.estudiantes = new ArrayList<CarreraEstudianteId>();
+			this.estudiantes = new ArrayList<EstudianteCarrera>();
 	}
 
 	
@@ -53,14 +53,14 @@ public class Carrera{
 			this.nombre = nombre;
 		}
 
-/**		public List<EstudianteCarrera> getEstudiantes() {
+		public List<EstudianteCarrera> getEstudiantes() {
 			return estudiantes;
 		}
 
 		public void setEstudiantes(List<EstudianteCarrera> estudiantes) {
 			this.estudiantes = estudiantes;
 		}
-**/
+
 		public int getId_carrera() {
 			return id_carrera;
 		}

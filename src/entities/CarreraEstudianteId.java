@@ -12,13 +12,11 @@ import org.hibernate.engine.internal.Cascade;
 
 @Embeddable
 public class CarreraEstudianteId implements Serializable{
+	@Column
+	private int estudiante_id;
 	
-
-	 @Column
-	 private int estudiante_id;
-
-   @Column
-   private int carrera_id;
+	@Column
+	private int carrera_id;
     
    public CarreraEstudianteId() {
    }

@@ -7,10 +7,14 @@ import javax.persistence.EntityManager;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 
+import dto.DtoEstudiante;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 import factory.FactoryEntityManager;
 import entities.Estudiante;
@@ -22,7 +26,6 @@ import repositories.EstudianteCarreraRepositoryImpl;
 //import repositories.EstudianteCarreraRepositoryImpl;
 import repositories.EstudianteRepositoryImpl;
 import java.io.FileReader;
-import utils.Helper;
 
 public class Main {
 
@@ -43,32 +46,54 @@ public class Main {
 		//em.close();
 		
 		EstudianteRepositoryImpl eri = new EstudianteRepositoryImpl(em);
-		Estudiante e = new Estudiante (44, "dolo", "parral", 34, "fem", "tandil", 999999);
-		eri.altaEstudiante(e);
+		Estudiante e = new Estudiante (2222222, "dolo", "parral", 34, "fem", "tandil", 999999);
+		Estudiante a = new Estudiante (4444444, "andrea", "del boca", 34, "fem", "tandil", 85);
+		Estudiante v = new Estudiante (155555, "Victoria", "Lopez", 30, "fem", "tandil", 20);
+		Estudiante m = new Estudiante (144444, "Martina", "Svedas", 34, "fem", "tandil",18);
+		//eri.altaEstudiante(e);
+		//eri.altaEstudiante(a);
+		//eri.altaEstudiante(v);
+		//eri.altaEstudiante(m);
+		
 		
 		Carrera c = new Carrera("Tudai", 2);
 		
 		CarreraRepositoryImpl repoCarrera = new CarreraRepositoryImpl(em);
-		repoCarrera.insertarCarrera(c);
+		//repoCarrera.insertarCarrera(c);
 		
 		EstudianteCarreraRepositoryImpl repoEstCarrera = new EstudianteCarreraRepositoryImpl(em);
 		Timestamp inscrip = new Timestamp(System.currentTimeMillis());
+		Timestamp inscrip2 = Timestamp.valueOf("2020-05-10 10:10:10.0");
 		Timestamp grad = Timestamp.valueOf("2026-09-23 10:10:10.0");
 		
 		
-		// Crear una instancia de EstudianteCarreraId
-		//CarreraEstudianteId idComp = new CarreraEstudianteId(e, c);
-		//idComp.setEstudiante(e);
-		//idComp.setCarrera(c);
 
 		// Crear una instancia de EstudianteCarrera y establecer el id compuesto
-		EstudianteCarrera estudianteCarrera = new EstudianteCarrera(e, c, inscrip, grad, 0);
-		//estudianteCarrera.setIdEstudianteCarrera(idComp);
-		//estudianteCarrera.setAnio_egreso(grad);
-		//estudianteCarrera.setFecha_inscripcion(inscrip);
+		//EstudianteCarrera estudianteCarrera = new EstudianteCarrera(e, c, inscrip, grad, 0);
+		//EstudianteCarrera estudianteCarreraA = new EstudianteCarrera(a, c, inscrip2, grad, 3);
+		EstudianteCarrera estudianteCarreraV = new EstudianteCarrera(v, c, inscrip2, grad, 3);
+		EstudianteCarrera estudianteCarreraM = new EstudianteCarrera(m, c, inscrip2, grad, 3);
+		
+		//matricular estudiante en carrera
+		
+		//repoEstCarrera.matricularEstudiante(estudianteCarrera);
+
+		//repoEstCarrera.matricularEstudiante(estudianteCarreraA);
+
+		//repoEstCarrera.matricularEstudiante(estudianteCarreraV);
+		
+		//repoEstCarrera.matricularEstudiante(estudianteCarreraM);
 		
 		
-		repoEstCarrera.matricularEstudiante(estudianteCarrera);
+	
+		List<Estudiante> estudiantesPorApellido = eri.listaEstudiantePorApellido();
+		estudiantesPorApellido.forEach( p-> System.out.println(p));
+		//List<DtoEstudiante> dtoEstudiante =  eri.listaEstudiantePorApellido();
+		//System.out.println("\n ---------- Listado Estudiantes por Apellido ----------");
+		//System.out.println("Apellido\t   Nombre\t    Carreras");
+		//for(DtoEstudiante d:dtoEstudiante) {
+		//	System.out.println(" $" + d.getApellido() +"\t\t     " + d.getNombre() +"\t\t    " +d.getCarreras());
+		
 		
 		//System.out.println(estudianteCarrera.getIdEstudianteCarrera()); 
 		em.close();
