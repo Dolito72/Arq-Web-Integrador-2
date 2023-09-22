@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import dto.DtoEstudiante;
 import entities.Estudiante;
 
 public class EstudianteRepositoryImpl implements EstudianteRepository {
@@ -31,8 +32,11 @@ public class EstudianteRepositoryImpl implements EstudianteRepository {
 
 	@Override
 	public List<Estudiante> listaEstudiantePorApellido() {
-		// TODO Auto-generated method stub
-		return null;
+		this.em.getTransaction().begin();
+		@SuppressWarnings("unchecked")
+		List<Estudiante> estudiantesPorApellido = em.createQuery("SELECT e FROM Estudiante e ORDER BY apellido ASC").getResultList(); 
+		
+		return estudiantesPorApellido;
 	}
 
 	@Override

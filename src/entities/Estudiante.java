@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 
 
 
+
 @Entity
 public class Estudiante {
 	
@@ -41,7 +42,7 @@ public class Estudiante {
 	private int LU;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "estudiante")
-	private Set<EstudianteCarrera>carreras;
+	private List<EstudianteCarrera>carreras;
 	
 	public Estudiante(int dni, String nombre, String apellido, int edad, String genero, String ciudad, int Lu) {
 		this.nombre = nombre;
@@ -51,12 +52,12 @@ public class Estudiante {
 		this.dni = dni;
 		this.ciudadResidencia = ciudad;
 		this.LU = Lu;
-		//this.carreras = new ArrayList<EstudianteCarrera>();
+		this.carreras = new ArrayList<EstudianteCarrera>();
 	}
 
-//	public Estudiante() {
+	public Estudiante() {
 	//	this.carreras = new ArrayList<EstudianteCarrera>();
-//	}
+	}
 
 	public String getNombres() {
 		return nombre;
@@ -115,21 +116,23 @@ public class Estudiante {
 	public void setNumeroLibreta(int numeroLibreta) {
 		this.LU = numeroLibreta;
 	}
-
-/**	public List<EstudianteCarrera> getCarreras() {
+	
+	public List<EstudianteCarrera> getCarreras() {
 		return carreras;
 	}
 
-	public void setCarreras(List<EstudianteCarrera> carreras) {
+	public void setJugadores(List<EstudianteCarrera> carreras) {
 		this.carreras = carreras;
 	}
-**/
-@Override
+
+	@Override
 	public String toString() {
-		return "Estudiante [nombres=" + nombre + ", apellido=" + apellido
-				+ ", edad=" + edad + ", genero=" + genero + ", dni=" + dni + ", ciudadResidencia=" + ciudadResidencia
-				+ ", numeroLibreta=" + LU + ", carreras="  + "]";
+		return "Estudiante [id_estudiante=" + id_estudiante + ", dni=" + dni + ", nombre=" + nombre + ", apellido="
+				+ apellido + ", edad=" + edad + ", genero=" + genero + ", ciudadResidencia=" + ciudadResidencia
+				+ ", LU=" + LU + ", carreras=" + carreras + "]";
 	}
+	
+
 
 	
 	
