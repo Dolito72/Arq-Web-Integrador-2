@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 import dto.DtoEstudiante;
 import entities.Estudiante;
@@ -41,14 +42,40 @@ public class EstudianteRepositoryImpl implements EstudianteRepository {
 
 	@Override
 	public Estudiante estudiantePorLibreta(int numeroLibreta) {
-		// TODO Auto-generated method stub
-		return null;
+		this.em.getTransaction().begin();
+		@SuppressWarnings("unchecked")
+		
+		String jpql = "SELECT e FROM Estudiante e WHERE e.LU = ?1";
+		Query query = em.createQuery(jpql);
+		query.setParameter(1, numeroLibreta);
+		
+		//CHEQUEAR XQ ME TRAIGO UNA LISTA Y SOLO NECESITO UNO
+		List<Estudiante> resultados = query.getResultList();
+		
+		
+		Estudiante estudiantePorLibreta = resultados.get(0);
+		em.close();
+		return estudiantePorLibreta;
 	}
 
 	@Override
 	public List<Estudiante> listaEstudiantePorGenero(String genero) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		this.em.getTransaction().begin();
+		@SuppressWarnings("unchecked")
+		
+		String jpql = "SELECT e FROM Estudiante e WHERE e.genero = ?1";
+		Query query = em.createQuery(jpql);
+		query.setParameter(1, genero);
+		
+		//CHEQUEAR XQ ME TRAIGO UNA LISTA Y SOLO NECESITO UNO
+		List<Estudiante> resultados = query.getResultList();
+		
+		
+		
+		//em.close();
+		return resultados;
+		
 	}
 //poner en interface
 	public Estudiante estudiantePorDni(int dni) {

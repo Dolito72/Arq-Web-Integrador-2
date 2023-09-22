@@ -49,11 +49,14 @@ public class Main {
 		Estudiante a = new Estudiante (4444444, "andrea", "del boca", 34, "fem", "tandil", 85);
 		Estudiante v = new Estudiante (155555, "Victoria", "Lopez", 30, "fem", "tandil", 20);
 		Estudiante m = new Estudiante (144444, "Martina", "Svedas", 34, "fem", "tandil",18);
+		Estudiante j = new Estudiante (154255, "Juan", "Perez", 40, "masc", "necochea", 2258973);
+		Estudiante pp = new Estudiante (1425, "Pedro", "Suarez", 44, "masc", "azul",1885729);
 		//eri.altaEstudiante(e);
 		//eri.altaEstudiante(a);
 		//eri.altaEstudiante(v);
 		//eri.altaEstudiante(m);
-		
+	//	eri.altaEstudiante(j);
+	//	eri.altaEstudiante(pp);
 		
 		Carrera c = new Carrera("Tudai", 2);
 		
@@ -69,7 +72,7 @@ public class Main {
 
 		// Crear una instancia de EstudianteCarrera y establecer el id compuesto
 		//EstudianteCarrera estudianteCarrera = new EstudianteCarrera(e, c, inscrip, grad, 0);
-		//EstudianteCarrera estudianteCarreraA = new EstudianteCarrera(a, c, inscrip2, grad, 3);
+		EstudianteCarrera estudianteCarreraA = new EstudianteCarrera(a, c, inscrip2, grad, 3);
 		EstudianteCarrera estudianteCarreraV = new EstudianteCarrera(v, c, inscrip2, grad, 3);
 		EstudianteCarrera estudianteCarreraM = new EstudianteCarrera(m, c, inscrip2, grad, 3);
 		
@@ -77,24 +80,27 @@ public class Main {
 		
 		//repoEstCarrera.matricularEstudiante(estudianteCarrera);
 
-		//repoEstCarrera.matricularEstudiante(estudianteCarreraA);
-
+	//	repoEstCarrera.matricularEstudiante(estudianteCarreraA);
+//
 		//repoEstCarrera.matricularEstudiante(estudianteCarreraV);
 		
 		//repoEstCarrera.matricularEstudiante(estudianteCarreraM);
 		
-		
 	
-		List<Estudiante> estudiantesPorApellido = eri.listaEstudiantePorApellido();
-		estudiantesPorApellido.forEach( p-> System.out.println(p));
+	//	List<Estudiante> estudiantesPorApellido = eri.listaEstudiantePorApellido();
+		//estudiantesPorApellido.forEach( p-> System.out.println(p));
 		//List<DtoEstudiante> dtoEstudiante =  eri.listaEstudiantePorApellido();
 		//System.out.println("\n ---------- Listado Estudiantes por Apellido ----------");
 		//System.out.println("Apellido\t   Nombre\t    Carreras");
 		//for(DtoEstudiante d:dtoEstudiante) {
 		//	System.out.println(" $" + d.getApellido() +"\t\t     " + d.getNombre() +"\t\t    " +d.getCarreras());
+		System.out.println("-----------------------------------");
+		//System.out.println(eri.estudiantePorLibreta(20));
 		
+		List<Estudiante> estudiantesPorGenero = eri.listaEstudiantePorGenero("fem");
+		System.out.println("-----------------------------------");
+		estudiantesPorGenero.forEach( p-> System.out.println(p));
 		
-		//System.out.println(estudianteCarrera.getIdEstudianteCarrera()); 
 		em.close();
 		
 	}
