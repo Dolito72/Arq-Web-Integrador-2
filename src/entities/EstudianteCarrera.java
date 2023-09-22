@@ -23,17 +23,17 @@ import java.util.Objects;
 @Entity
 @Table(name ="estudiante_carrera")
 public class EstudianteCarrera{
-	
+		
 	@EmbeddedId 
 	private CarreraEstudianteId idEstudianteCarrera = new CarreraEstudianteId();
 	
-	@ManyToOne
-	@MapsId("estudiante_id")
+	@ManyToOne(targetEntity = Estudiante.class)
+	@MapsId("estudianteId")
 	@JoinColumn(name = "estudiante_id")
 	private Estudiante estudiante;
 
-	@ManyToOne
-	@MapsId("carrera_id")
+	@ManyToOne (targetEntity = 	Carrera.class)
+	@MapsId("carreraId")
 	@JoinColumn(name = "carrera_id")
 	private Carrera carrera;
 	

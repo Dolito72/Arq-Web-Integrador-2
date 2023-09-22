@@ -1,6 +1,7 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,55 +13,61 @@ import org.hibernate.engine.internal.Cascade;
 
 @Embeddable
 public class CarreraEstudianteId implements Serializable{
-	@Column
-	private int estudiante_id;
+	private static final long serialVersionUID = 1L;
 	
-	@Column
-	private int carrera_id;
+	@Column (name = "estudiante_id")
+	private Integer estudianteId;
+	
+	@Column (name = "carrera_id")
+	private Integer carreraId;
     
    public CarreraEstudianteId() {
    }
+   
+   @Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		CarreraEstudianteId carrEstId = (CarreraEstudianteId) obj;
+		return this.getEstudiante_id() == carrEstId.getEstudiante_id() 
+				&& this.getCarrera_id() == carrEstId.getCarrera_id();
+   }
 
    @Override
-	public int hashCode() {
-		// TODO Auto-generated method stub
-		return super.hashCode();
-	}
-
-
-	@Override
-	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
-		return super.equals(obj);
-	}
-
+   public int hashCode() {
+       int result = estudianteId.hashCode();
+       result = 31 * result + carreraId.hashCode();
+       return result;
+   }
 
 	public int getEstudiante_id() {
-		return estudiante_id;
+		return estudianteId;
 	}
 
 	public int getCarrera_id() {
-		return carrera_id;
+		return carreraId;
 	}
 
 	public void setEstudiante_id(int estudiante_id) {
-		this.estudiante_id = estudiante_id;
+		this.estudianteId = estudiante_id;
 	}
 
 	public void setCarrera_id(int carrera_id) {
-		this.carrera_id = carrera_id;
+		this.carreraId = carrera_id;
 	}
 
 	   
 	public CarreraEstudianteId(int estudiante_id, int carrera_id) {
 		super();
-		this.estudiante_id = estudiante_id;
-		this.carrera_id = carrera_id;
+		this.estudianteId = estudiante_id;
+		this.carreraId = carrera_id;
 	}
 
 	@Override
 	public String toString() {
-		return "CarreraEstudianteId [estudiante=" + estudiante_id + ", carrera=" + carrera_id + "]";
+		return "CarreraEstudianteId [estudiante=" + estudianteId + ", carrera=" + carreraId + "]";
 	}
 	    
 	   

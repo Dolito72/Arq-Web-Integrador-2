@@ -8,6 +8,7 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 
 import dto.DtoEstudiante;
+import dto.DtoEstudianteCarrera;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -51,45 +52,47 @@ public class Main {
 		Estudiante m = new Estudiante (144444, "Martina", "Svedas", 34, "fem", "tandil",18);
 		Estudiante j = new Estudiante (154255, "Juan", "Perez", 40, "masc", "necochea", 2258973);
 		Estudiante pp = new Estudiante (1425, "Pedro", "Suarez", 44, "masc", "azul",1885729);
-		//eri.altaEstudiante(e);
-		//eri.altaEstudiante(a);
-		//eri.altaEstudiante(v);
-		//eri.altaEstudiante(m);
-		//eri.altaEstudiante(j);
-		//eri.altaEstudiante(pp);
-		
-		Carrera c = new Carrera("Tudai", 2);
+//		eri.altaEstudiante(e);
+//		eri.altaEstudiante(a);
+//		eri.altaEstudiante(v);
+//		eri.altaEstudiante(m);
+//		eri.altaEstudiante(j);
+//		eri.altaEstudiante(pp);
+	
+		Carrera tudai = new Carrera("Tudai", 2);
 		Carrera abogacia = new Carrera("Abogacia", 5);
 		Carrera sistemas = new Carrera("Sistemas", 5);
 		
 		
 		CarreraRepositoryImpl repoCarrera = new CarreraRepositoryImpl(em);
-		//repoCarrera.insertarCarrera(abogacia);
-		//repoCarrera.insertarCarrera(sistemas);
+//		repoCarrera.insertarCarrera(tudai);
+//		repoCarrera.insertarCarrera(abogacia);
+//		repoCarrera.insertarCarrera(sistemas);
 		
 		EstudianteCarreraRepositoryImpl repoEstCarrera = new EstudianteCarreraRepositoryImpl(em);
 		Timestamp inscrip = new Timestamp(System.currentTimeMillis());
 		Timestamp inscrip2 = Timestamp.valueOf("2020-05-10 10:10:10.0");
+		Timestamp inscrip3 = Timestamp.valueOf("2021-05-10 10:10:10.0");
 		Timestamp grad = Timestamp.valueOf("2026-09-23 10:10:10.0");
-		
+		Timestamp grad2 = Timestamp.valueOf("2025-09-23 10:10:10.0");
 		
 
 		// Crear una instancia de EstudianteCarrera y establecer el id compuesto
-		//EstudianteCarrera estudianteCarrera = new EstudianteCarrera(e, c, inscrip, grad, 0);
-		EstudianteCarrera estudianteCarreraA = new EstudianteCarrera(a, c, inscrip2, grad, 3);
-		EstudianteCarrera estudianteCarreraV = new EstudianteCarrera(v, c, inscrip2, grad, 3);
-		EstudianteCarrera estudianteCarreraM = new EstudianteCarrera(m, c, inscrip2, grad, 3);
-		EstudianteCarrera estudianteCarreraPedro = new EstudianteCarrera(j, abogacia, inscrip2, grad, 3);
+		EstudianteCarrera estudianteCarrera = new EstudianteCarrera(e, tudai, inscrip3, grad2, 2);
+		EstudianteCarrera estudianteCarreraA = new EstudianteCarrera(a, abogacia, inscrip3, grad2, 2);
+		EstudianteCarrera estudianteCarreraV = new EstudianteCarrera(v, abogacia, inscrip3, grad2, 2);
+		EstudianteCarrera estudianteCarreraM = new EstudianteCarrera(m, abogacia, inscrip3, grad2, 2);
+		EstudianteCarrera estudianteCarreraPedro = new EstudianteCarrera(j, tudai, inscrip2, grad, 3);
 		EstudianteCarrera estudianteCarreraJuan = new EstudianteCarrera(pp, abogacia, inscrip2, grad, 3);
 		
-		//matricular estudiante en carrera
-		//repoEstCarrera.matricularEstudiante(estudianteCarrera);
-		//repoEstCarrera.matricularEstudiante(estudianteCarreraA);
-		//repoEstCarrera.matricularEstudiante(estudianteCarreraV);
-		
-		//repoEstCarrera.matricularEstudiante(estudianteCarreraM);
-		//repoEstCarrera.matricularEstudiante(estudianteCarreraPedro);
-		//repoEstCarrera.matricularEstudiante(estudianteCarreraJuan);
+//		//matricular estudiante en carrera
+//		repoEstCarrera.matricularEstudiante(estudianteCarrera);
+//		repoEstCarrera.matricularEstudiante(estudianteCarreraA);
+//		repoEstCarrera.matricularEstudiante(estudianteCarreraV);
+//		
+//		repoEstCarrera.matricularEstudiante(estudianteCarreraM);
+//		repoEstCarrera.matricularEstudiante(estudianteCarreraPedro);
+//		repoEstCarrera.matricularEstudiante(estudianteCarreraJuan);
 	
 		//List<Estudiante> estudiantesPorApellido = eri.listaEstudiantePorApellido();
 	//	estudiantesPorApellido.forEach( p-> System.out.println(p));
@@ -107,14 +110,26 @@ public class Main {
 		//estudiantesPorGenero.forEach( p-> System.out.println(p));
 		System.out.println("-----------------------------------");
 		
-		//Estudiante estudiantePorLibreta = eri.estudiantePorLibreta(20);
-		//System.out.println("Estudiante filtrado por Libreta Universitaria" + estudiantePorLibreta);
+		Estudiante estudiantePorLibreta = eri.estudiantePorLibreta(20);
+		System.out.println("Estudiante filtrado por Libreta Universitaria" + estudiantePorLibreta);
 		
 		
 		System.out.println("-----------------------------------");
 		List<Carrera> carrerasConInscriptos= repoEstCarrera.carrerasConInscriptosPorCantInsc();
 		System.out.println("Carrera con inscriptos ordenados por cantidad inscriptos");
 		carrerasConInscriptos.forEach( p-> System.out.println(p));
+//		List<EstudianteCarrera> dto =repoEstCarrera.estudiantesPorCarreraFiltradoCiudad(abogacia, "tandil");
+//		
+//		
+//		dto.forEach( p-> System.out.println(p));
+//		for(EstudianteCarrera d:dto) {
+//			System.out.println(" nombre" + d. +"\t\t     " + "apellido" + 
+//					d.getApellido() +"\t\t    " +"ciudad " + d.getCiudad()
+//					+"\t\t    " +"carrera " + d.getCarrera());
+//		}
+//		
+	
+		
 		em.close();
 		
 	}

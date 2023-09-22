@@ -1,9 +1,10 @@
 package entities;
 
-import java.io.Serializable;
+
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -22,7 +23,8 @@ import javax.persistence.OneToMany;
 public class Carrera{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id_carrera;
+	@Column (name = "carrera_id")
+	private int carreraId;
 	@Column
 	private String nombre;
 	
@@ -30,7 +32,7 @@ public class Carrera{
 	private int duracion;
 	
 	@OneToMany (fetch=FetchType.LAZY, mappedBy = "carrera")
-	private List<EstudianteCarrera> estudiantes;
+	private Set<EstudianteCarrera> estudiantes;
 
 	public Carrera () {
 		//this.estudiantes = null;
@@ -40,7 +42,7 @@ public class Carrera{
 	public Carrera(String nombre, int duracion) {
 			this.nombre = nombre;
 			this.duracion = duracion;
-			this.estudiantes = new ArrayList<EstudianteCarrera>();
+			this.estudiantes = new HashSet<EstudianteCarrera>();
 	}
 
 	
@@ -53,21 +55,21 @@ public class Carrera{
 			this.nombre = nombre;
 		}
 
-		public List<EstudianteCarrera> getEstudiantes() {
+		public Set<EstudianteCarrera> getEstudiantes() {
 			return estudiantes;
 		}
 
-		public void setEstudiantes(List<EstudianteCarrera> estudiantes) {
+		public void setEstudiantes(Set<EstudianteCarrera> estudiantes) {
 			this.estudiantes = estudiantes;
 		}
 
 		public int getId_carrera() {
-			return id_carrera;
+			return carreraId;
 		}
 
 		@Override
 		public String toString() {
-			return "Carrera [id_carrera=" + id_carrera + ", nombre=" + nombre +  "]";
+			return "Carrera [id_carrera=" + carreraId + ", nombre=" + nombre +  "]";
 		}
 	
 	
