@@ -41,7 +41,6 @@ public class Main {
 		
 		//em.getTransaction().commit();
 		//em.close();
-		
 		EstudianteRepositoryImpl eri = new EstudianteRepositoryImpl(em);
 		Estudiante e = new Estudiante (44, "dolo", "parral", 34, "fem", "tandil", 999999);
 		eri.altaEstudiante(e);
