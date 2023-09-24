@@ -1,18 +1,17 @@
 package repositories;
 
-
+import java.sql.Timestamp;
 import java.util.List;
 
+import dto.DtoCarrera;
 import dto.DtoEstudianteCarrera;
-import entities.Carrera;
-import entities.Estudiante;
-import entities.EstudianteCarrera;
+
 
 public interface EstudianteCarreraRepository {
-	
-	List<EstudianteCarrera> estudiantesPorCarreraFiltradoCiudad(Carrera carrera, String ciudad);
-	void matricularEstudiante(EstudianteCarrera ec);
-	List<Carrera> carrerasConInscriptosPorCantInsc();
-	
-		
+
+	void matricularEstudiante(int idEst, int idCarr, Timestamp fechaInsc, Timestamp fechaEgreso);
+	List<DtoCarrera> carrerasConInscriptosPorCantInsc();
+	List<DtoEstudianteCarrera> estudiantesPorCarreraFiltradoCiudad(int idCarrera, String ciudad);
+	List<Object[]> getInforme();
+
 }

@@ -19,13 +19,12 @@ import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Objects;
 
-
 @Entity
 @Table(name ="estudiante_carrera")
 public class EstudianteCarrera{
-		
+		//borrre new
 	@EmbeddedId 
-	private CarreraEstudianteId idEstudianteCarrera = new CarreraEstudianteId();
+	private CarreraEstudianteId idEstudianteCarrera;
 	
 	@ManyToOne(targetEntity = Estudiante.class)
 	@MapsId("estudianteId")
@@ -43,23 +42,40 @@ public class EstudianteCarrera{
 	@Column
 	private Timestamp fecha_egreso;
 	
+	//sacralo de la tabla no de la clase, ya q va cambiando
 	@Column  //actual - inscripcion
 	private int antiguedad;
+	
+	//tal vez no es necesario modelarlo en la tabla pero si tenerlo en la clase
+	@Column
+	private Boolean graduado;
 
 	public EstudianteCarrera() {
 		
 	}
-
-	public EstudianteCarrera(Estudiante e, Carrera c, Timestamp anio_inscripcion, Timestamp anio_egreso, int antiguedad) {
-		//this.idEstudianteCarrera = carEstId;
+	//cambie antiguedad y ver si esta graduado a la hora de crearlo
+	public EstudianteCarrera(Estudiante e, Carrera c, Timestamp anio_inscripcion, Timestamp anio_egreso, CarreraEstudianteId id) {
+		this.idEstudianteCarrera = id;
 		this.estudiante = e;
 		this.carrera = c;
 		this.fecha_inscripcion = anio_inscripcion;
 		this.fecha_egreso = anio_egreso;
-		this.antiguedad = antiguedad;
+		this.antiguedad = this.getAntiguedad(anio_inscripcion);
+		this.graduado = this.verificarGraduado(anio_egreso);
 	}
 
- 
+	public boolean isGraduado() {
+		return graduado;
+	}
+	
+	public boolean verificarGraduado(Timestamp anio_egreso) {
+		return !(anio_egreso == null);
+	}
+
+	public void setGraduado(boolean graduado) {
+		this.graduado = graduado;
+	}
+
 	public Estudiante getEstudiante() {
 		return estudiante;
 	}
@@ -75,8 +91,6 @@ public class EstudianteCarrera{
 	public void setCarrera(Carrera carrera) {
 		this.carrera = carrera;
 	}
-
-	
 
 	public Timestamp getAnio_inscripcion() {
 		return this.fecha_inscripcion;
@@ -94,7 +108,7 @@ public class EstudianteCarrera{
 		this.fecha_egreso = anio_egreso;
 	}
 
-	public Integer getAntiguedad() {
+	public Integer getAntiguedad(Timestamp anio_inscripcion) {
 		Calendar fechaInscripcion = Calendar.getInstance();
 		fechaInscripcion.setTimeInMillis(this.fecha_inscripcion.getTime());
 		return Calendar.getInstance().get(Calendar.YEAR) - fechaInscripcion.get(Calendar.YEAR);
@@ -103,8 +117,6 @@ public class EstudianteCarrera{
 	public void setAntiguedad(int antiguedad) {
 		this.antiguedad = antiguedad;
 	}
-
-	
 
 	public CarreraEstudianteId getIdEstudianteCarrera() {
 		return idEstudianteCarrera;

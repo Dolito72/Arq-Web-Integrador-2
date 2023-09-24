@@ -9,10 +9,9 @@ public interface EstudianteRepository {
 	
 	
 	void altaEstudiante(Estudiante e);
-	List<Estudiante> listaEstudiantePorApellido();
-	Estudiante estudiantePorLibreta(int numeroLibreta);
-	List<Estudiante> listaEstudiantePorGenero(String genero);
-	
+	DtoEstudiante estudiantePorLibreta(int numeroLibreta);
+	List<DtoEstudiante> listaEstudiantePorGenero(String genero);
+	List<DtoEstudiante> listaEstudiantesPorApellido();
 	
 	
 	

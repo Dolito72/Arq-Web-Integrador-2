@@ -2,7 +2,7 @@ package repositories;
 
 import java.util.List;
 
-import dto.DtoCantidadInscriptosPorCarrera;
+
 import entities.Carrera;
 import entities.Estudiante;
 
